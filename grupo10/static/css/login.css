@@ -1,0 +1,45 @@
+.content {
+    text-align: center;
+}
+
+.form-group {
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.form-group label {
+    font-family: "Fira Code", monospace;
+    display: block;
+    margin-top: 15px;
+    margin-bottom: 5px;
+    color: #333;
+}
+
+.form-control {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+button.form-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #000;
+    width: 100%;
+    background: #73b4f6; 
+    border-radius: 50px;
+    padding: 10px 20px;
+    border: 3.5px solid #000;
+    margin-top: 10px;
+    margin-bottom: 40px;
+    text-decoration: none;
+    font-size: 1.2em;
+}
+
+button.form-button:hover {
+    background-color: #195fa4;
+    text-decoration: none;
+}

@@ -1,0 +1,36 @@
+{% extends 'buchefapp/base.html' %}
+
+{% block title %}Agregar Local{% endblock %}
+
+{% block content %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
+<div class="container">
+    <h1>Ingrese los datos para registrar su local</h1>
+    <form id="agregarForm" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.non_field_errors }}
+        <div class="fieldWrapper">
+            <h6>Nombre del local</h6>
+            {{ form.nombre.label_tag }}
+            {{ form.nombre }}
+        </div><br>
+
+        <div class="fieldWrapper">
+            <h6>Dirección del local</h6>
+            {{ form.direccion.label_tag }}
+            {{ form.direccion }}
+        </div><br>
+
+        <div class="fieldWrapper">
+            <h6>Sube una foto (opcional)</h6>
+            {{ form.local_image.label_tag }}
+            {{ form.local_image }}
+        </div><br>
+
+        <button id="sendButton" type="submit" class="btn btn-success mt-3">Publicar</button>
+    </form>
+    <hr>
+</div>
+{% endblock %}
+

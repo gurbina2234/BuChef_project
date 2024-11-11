@@ -1,0 +1,54 @@
+{% extends 'buchefapp/base.html' %}
+{% load static %}
+{% block css %}
+    <link rel="stylesheet" href="{% static 'css/home.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+{% endblock %}
+{% block content %}
+<div class="center-content"> 
+    <h2> ¡Bienvenid@ a Buchef! </h2>
+    <br>
+    <p> Encuentra diferentes opciones para comer 😁</p>
+</div>
+<div class="home-container">
+
+    <h2> Locales </h2>
+    <div class="category-buttons">
+        <h3> Filtra por categoría: </h3>
+        {% for category in categorias %}
+            <a class="etiqueta" href="{% url 'buchefapp:home' categoria=category.id %}" style="text-decoration:none;"> {{category.nombre}}</a>
+        {% endfor %}
+    </div>
+    <div class="restaurant-list">
+        {% for local in locales %}
+        <div class="local-tarjeta" id ="{{local.id}}">
+            <a href="{% url 'buchefapp:restaurant' local_id=local.id %}" style="text-decoration:none;">
+                {% if local.local_image %}
+                    <img src="{{ local.local_image.url }}" alt="{{ local.nombre }}" class="local-imagen">
+                {% else %}
+                    <img src="{% static 'uploads/locales/no-photo.jpg' %}" alt="{{ local.nombre }}" class="local-imagen">
+                {% endif %}
+            
+                <div class="local-cabecera">
+                    <h3>{{local.nombre}}</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> {{local.direccion}}</p>
+                </div>
+                <div class="local-info">
+                    <div class="local-score">
+                        <span>{{local.avg_score}}</span>
+                    </div>
+                </div>
+            </a>
+            <div class="category-buttons">
+                {% for local_category in local.local_category_set.all|slice:":3" %}
+                <a class="etiqueta">{{ local_category.category_id.nombre }}</a>
+                {% endfor %}
+            </div>
+            <button class="resena-button" data-is-authenticated="{% if user.is_authenticated %}true{% else %}false{% endif %}" data-url="{% url 'buchefapp:review' local_id=local.id %}">Escribir Reseña</button>
+        </div>
+        {% endfor %}
+    </div>
+    <script src="{% static 'js/function.js' %}"></script>
+    <script src="{% static 'js/authentic.js' %}"></script>
+</div>
+{% endblock %}

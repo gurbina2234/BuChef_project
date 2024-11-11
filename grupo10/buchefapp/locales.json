@@ -1,0 +1,20 @@
+[
+    {
+        "model": "buchefapp.local",
+        "pk": 1,
+        "fields": {
+            "nombre": "Los Egipcios",
+            "direccion": "Av. Los Egipcios 123",
+            "local_image": "img/24/egipcio.jpeg"
+        }
+    },
+    {
+        "model": "buchefapp.local",
+        "pk": 2,
+        "fields": {
+            "nombre": "La Sonia",
+            "direccion": "Electrica -1",
+            "local_image": "img/24/Captura_de_pantalla_2024-05-07_a_las_21.25.07.png"
+        }
+    }
+]

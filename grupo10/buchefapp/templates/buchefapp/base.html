@@ -1,0 +1,51 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> BuChef </title>
+    {% block css %}{% endblock %}
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code&family=Roboto&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
+    integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">    
+
+</head>
+<body>
+    <div class="background-container">
+        <div class="navbar">
+            <div class="navbar-left">
+                <img id="logo-id" src="{% static 'svg/logo.svg' %}" alt="Logo">
+                <h1>BuChef</h1>
+            </div>
+            <div class="navbar-right">
+                {% if user.is_authenticated %}
+                <div class="user-profile">
+                    <img class="user-profile-image" src="/static/uploads/usuario/default.jpg" alt="Imagen de perfil de un usuario">
+                    <p id="username-text">{{ user.username }}</p>
+                </div>
+                {% endif %}
+                <button class="d-1" onclick="window.location.href='{% url 'buchefapp:home' %}'">Inicio</button>
+                {% if user.is_authenticated %}
+                    <button class="d-1" onclick="window.location.href='{% url 'buchefapp:agregar_local' %}'">Agregar Local</button>
+                    <button class="d-1" onclick="window.location.href='{% url 'buchefapp:logout' %}'">Cerrar sesión</button>
+                {% else %}
+                    <button class="d-1" onclick="window.location.href='{% url 'buchefapp:register_user' %}'">Registrarse</button>
+                    <button class="d-1" onclick="window.location.href='{% url 'buchefapp:login' %}'">Ingresar</button>
+                {% endif %}
+            </div>
+            
+        </div>
+        <section class="main-container">
+            {% block content %}{% endblock %}   
+            {% block javascript %}
+            <script src="{% static 'js/animations.js' %}"></script>
+            {% endblock %}
+        </section>   
+    </div>
+</body>
+</html>

@@ -1,0 +1,35 @@
+[
+    {
+      "model": "buchefapp.category",
+      "pk": 1,
+      "fields": {
+        "nombre": "vegano"
+      }
+    
+    },
+    {
+      "model": "buchefapp.category",
+      "pk": 2,
+      "fields": {
+        "nombre": "vegetariano"
+      }
+    
+    },
+    {
+      "model": "buchefapp.category",
+      "pk": 3,
+      "fields": {
+        "nombre": "árabe"
+      }
+    
+    },
+    {
+      "model": "buchefapp.category",
+      "pk": 4,
+      "fields": {
+        "nombre": "junaeb"
+      }
+    
+    }
+  ]
+  

@@ -1,0 +1,100 @@
+{% extends 'buchefapp/base.html' %}
+
+{% block title %}Review{% endblock %}
+
+{% block content %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
+<div class="container">
+    <h1>Ingresar reseña</h1>
+
+    {% if messages %}
+    <div class="errors" role="alert">
+        {% for message in messages %}
+        <p>{{ message }}</p>
+        {% endfor %}
+    </div>
+    {% endif %}
+
+    {% if errors %}
+        <div class="errors" role="alert">
+            <p>Por favor, corrige los siguientes errores:</p>
+            <ul>
+                {% for field, error_list in errors.items %}
+                <li>{{ error_list.as_text }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+    {% endif %}
+
+
+    <form id="reviewForm" action="{% url 'buchefapp:review' local_id=local_id %}" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div>
+        <h6>Tu calificación general para este local:</h6>
+        <label class="score score-1" onclick="increaseSize(this)">
+            1
+            <input type="radio" name="score" value="1" checked>
+        </label>
+        <label class="score score-2" onclick="increaseSize(this)">
+            2
+            <input type="radio" name="score" value="2">
+        </label>
+        <label class="score score-3" onclick="increaseSize(this)">
+            3
+            <input type="radio" name="score" value="3">
+        </label>
+        <label class="score score-4" onclick="increaseSize(this)">
+            4
+            <input type="radio" name="score" value="4">
+        </label>
+        <label class="score score-5" onclick="increaseSize(this)">
+            5
+            <input type="radio" name="score" value="5">
+        </label>
+    </div>
+    <br>
+
+    <div class="fieldWrapper">
+        <h6>Tu reseña</h6>
+        <label for="id_message">Tu mensaje (obligatorio):</label>
+        <textarea name="message" id="id_message" class="form-control" placeholder="Escribe tu mensaje aquí" cols="80" rows="8" maxlength="100" required></textarea>
+    </div><br>
+
+    <div class="fieldWrapper">
+        <h6>Fecha de tu experiencia (obligatorio)</h6>
+        <label for="id_date">Fecha:</label>
+        <input type="date" name="date" id="id_date" class="form-control" required>
+    </div><br>
+
+    <div class="fieldWrapper">
+        <h6>Sube una foto (opcional)</h6>
+        <label for="id_image">Foto:</label>
+        <input type="file" name="image" id="id_image" class="form-control">
+    </div><br>
+
+    <div class="fieldWrapper">
+        <h6>Selecciona categoría(s) (obligatorio)</h6>
+        <label for="id_category">Categorías:</label><br>
+            {% if categories %}
+                {% for category in categories %}
+                    <div class="category-wrapper">
+                        <input type="checkbox" name="category" value="{{ category.id }}" id="category-{{ category.id }}">
+                        <label for="category-{{ category.id }}">{{ category.nombre }}</label>
+                    </div>
+                {% endfor %}
+            {% endif %}
+    </div>
+        <button id="sendButton" type="button" class="btn btn-success mt-3">Publicar</button>
+    </form>
+
+    <hr>
+
+    <!-- If there is an object, display the uploaded image -->
+    {% if obj %}
+    <h3>Publicada exitosamente:</h3>
+    {% endif %}
+    <script src="{% static 'js/function.js' %}"></script>
+    <script src="{% static 'js/review_validations.js' %}"></script>
+</div>
+{% endblock %}

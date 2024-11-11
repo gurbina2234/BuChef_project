@@ -1,0 +1,141 @@
+{% extends 'buchefapp/base.html' %}
+{% load static %}
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/restaurant.css' %}">
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row" >
+
+        <div id="restaurant-summary">
+            <div class="card-body">
+                <h1 class="nombre-local"> {{local.nombre}} </h1>
+                <h1 class="direccion-local"><i class="fa fa-map-marker"></i> {{local.direccion}}</h1>            
+                <h1 class="foto-local"><img src="/media/{{ local.local_image }}"  alt="Foto de un restaurante"></h1>
+            </div>
+
+            <div class="etiquetas">
+                {% if categorias_local %}
+                    {% for categoria in categorias_local %}
+                        <h1 class="etiqueta"> {{categoria}} </h1>
+                    {% endfor %}
+                {% else %}
+                    <p>No hay categorías disponibles.</p>
+                {% endif %}
+            </div>
+
+            <div class="score-table">
+                <div class="score-bars">
+                    <div class="bar" data-score="5">
+                        <span>5</span>
+                        <div class="progress">
+                            <div class="progress-value" ></div>
+                        </div>
+                    </div>
+                    <div class="bar" data-score="4">
+                        <span>4</span>
+                        <div class="progress">
+                            <div class="progress-value" ></div>
+                        </div>
+                    </div>
+                    <div class="bar" data-score="3">
+                        <span>3</span>
+                        <div class="progress">
+                            <div class="progress-value" ></div>
+                        </div>
+                    </div>
+                    <div class="bar" data-score="2">
+                        <span>2</span>
+                        <div class="progress">
+                            <div class="progress-value"></div>
+                        </div>   
+                    </div>
+                    <div class="bar" data-score="1">
+                        <span>1</span>
+                        <div class="progress">
+                            <div class="progress-value"></div>
+                        </div>
+                    </div>    
+                </div>
+                <div class="rating-summary">
+                    <span class="avg_score-local">{{local.avg_score}}</span>
+                    <span class="total-reviews">{{local.total_reviews}}</span>
+                    <span class="valoraciones_text">valoraciones</span>
+                </div>
+            </div>
+        </div>
+
+        <!--ADD REVIEW-->
+        <!-- Hacer referencia al id del restaurante donde se hace la review-->
+        <a id="boton-review" class="resena-button" data-is-authenticated="{% if user.is_authenticated %}true{% else %}false{% endif %}" href="{% url 'buchefapp:review' local_id=local.id %}">
+            <!-- Ver el nombre-->
+            <strong> ¡Publica una review! </strong>
+        </a>
+        <!--ALL REVIEWS-->
+        
+        <!-- Aca iteramos sobre las review en la base de datos -->
+
+        <!-- if restaurant.review_set.all 
+        for review in restaurant.review_set.all|dictsortreversed:"pk"  -->
+        
+        <div class="review-rows"> <!--  -->
+            {% if reviews %}
+                {% for review in reviews %}
+                    <div class="columna-card"> <!--  -->
+                        <div class ="user-bar"> <!--  -->
+                            <span class="user-icon"><i class="fas fa-user-circle fa-4x"></i></span>  <!-- Icono del usuario -->
+                            <div class="user-data">                                          <!-- Datos del usuario -->
+                                <span class="user-name"><strong>{{ review.user_id.username }}</strong></span>
+                                <span class="user-score"> {{review.score }} </span>
+                                <span class="date">Publicado en {{ review.date }}</span>
+                            </div>
+                        </div>
+                        <div class="review-data">
+                            <div class="review-message">
+                                <p>Comentario: {{ review.message }}</p>
+                            </div>
+                            {% if review.image %}
+                            <div class="review-image">
+                                <img src="/media/{{ review.image }}" alt="Foto de la review">
+                            </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                {% endfor %}
+            {% else %}
+                <div id="no reviews">
+                    <p>No hay reviews disponibles.</p>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+    <script src="{% static 'js/authentic.js' %}"></script>    
+</div>
+
+
+{% block javascript %}
+
+<script> 
+    document.addEventListener("DOMContentLoaded", function() {
+        const bars = document.querySelectorAll(".bar");
+    // const local 
+        var Porcentajes = {
+            Porcentaje_1: '{{porcentajes.Porcentaje_1|safe}}',
+            Porcentaje_2: '{{porcentajes.Porcentaje_2|safe}}',
+            Porcentaje_3: '{{porcentajes.Porcentaje_3|safe}}',
+            Porcentaje_4: '{{porcentajes.Porcentaje_4|safe}}',
+            Porcentaje_5: '{{porcentajes.Porcentaje_5|safe}}',
+        };
+
+        bars.forEach(bar => {
+            const score = bar.getAttribute("data-score");
+            const percentage = Porcentajes['Porcentaje_' + score];
+            bar.querySelector(".progress-value").style.width = percentage + "%";
+        });
+});
+</script>
+{% endblock %}
+
+{% endblock %}

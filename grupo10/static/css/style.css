@@ -1,0 +1,220 @@
+/* Aplicar el font-family globalmente */
+body {
+    font-family: "Fira Code", monospace;
+    color: #333; /* Un color de texto armonioso */
+    background-color: #f8f2ea; /* Un fondo claro para contraste */
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Ajustar los estilos específicos para títulos */
+h1, h2, h3, h4, h5, h6 {
+    color: #000000; /* Color de texto armonioso */
+    margin-bottom: 20px; /* Espacio uniforme entre los títulos y otros elementos */
+}
+
+/* Estilos para los títulos del formulario */
+h6 {
+    font-size: 1.1em;
+    color: #000000; /* Un color ligeramente más claro para diferenciación */
+    margin-bottom: 10px;
+}
+
+/* Estilos para los puntajes */
+.score {
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    margin-right: 10px;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+    text-align: center;
+    line-height: 30px; /* Alinear el texto verticalmente */
+    color: rgb(44, 43, 43); /* Color del texto dentro del puntaje */
+}
+
+.score:hover {
+    transform: scale(1.2);
+}
+
+.score-1 { background-color: #ff4444; }
+.score-2 { background-color: #ffbb33; }
+.score-3 { background-color: #ffdd33; }
+.score-4 { background-color: #66bb6a; }
+.score-5 { background-color: #00C851; }
+
+/* Estilos para el botón */
+.btn.btn-success.mt-3 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #000;
+    width: 100%;
+    background: #73b4f6; 
+    border-radius: 50px;
+    padding: 10px 20px;
+    border: 3.5px solid #000;
+    margin-top: 10px;
+    margin-bottom: 40px;
+    text-decoration: none;
+    font-size: 1.2em;
+    transition: all 0.3s ease;
+}
+
+.btn.btn-success.mt-3:hover {
+    background-color:#195fa4;
+    text-decoration: none;
+}
+
+#btn-cancel{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #000;
+    width: 100%;
+    background: #ff00006d; 
+    border-radius: 50px;
+    padding: 10px 20px;
+    border: 3.5px solid #000;
+    margin-top: 10px;
+    margin-bottom: 40px;
+    text-decoration: none;
+    font-size: 1.2em;
+}
+
+#btn-cancel:hover {
+    background-color:#ff0400b5;
+    text-decoration: none;
+}
+
+/* Estilos para los campos del formulario */
+.fieldWrapper {
+    margin-bottom: 20px;
+}
+
+.fieldWrapper label {
+    display: block;
+    margin-bottom: 5px;
+    color: #555; /* Un color armonioso */
+}
+
+.fieldWrapper input, .fieldWrapper textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1em;
+}
+
+.fieldWrapper input[type="file"] {
+    padding: 3px; /* Ajuste para el campo de archivo */
+}
+
+/* Estilos para los botones de categoría */
+.fieldWrapper .category-wrapper {
+    display: inline-block;
+    margin-right: 10px;
+    margin-bottom: 10px;
+}
+
+.fieldWrapper input[type="checkbox"] {
+    display: none; /* Ocultar el checkbox original */
+}
+
+.fieldWrapper label {
+    display: inline-block;
+    padding: 10px 15px;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    background-color: #f8f8f8;
+    color: #333;
+    font-size: 1em;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.fieldWrapper input[type="checkbox"]:checked + label {
+    background-color: #73b4f6; /* Color de fondo cuando está seleccionado */
+    color: white; /* Color del texto cuando está seleccionado */
+    border-color: #73b4f6; /* Color del borde cuando está seleccionado */
+}
+
+.fieldWrapper label:hover {
+    background-color: #ddd; /* Color de fondo al pasar el ratón */
+    border-color: #bbb; /* Color del borde al pasar el ratón */
+}
+
+.container {
+    max-width: 600px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #ffffff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+
+h1 {
+    font-size: 1.5em;
+    margin-bottom: 20px;
+    color: #333333;
+}
+
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+textarea {
+    padding: 10px;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    margin-bottom: 15px;
+    resize: vertical;
+}
+
+textarea:focus {
+    border-color: #80bdff;
+    outline: none;
+    box-shadow: 0 0 5px rgba(128, 189, 255, 0.5);
+}
+
+button.btn {
+    align-self: flex-start;
+    background-color: #28a745;
+    color: #ffffff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+button.btn:hover {
+    background-color: #218838;
+}
+
+hr {
+    margin-top: 30px;
+}
+
+
+form p {
+    display: flex;
+    flex-direction: column;
+}
+
+form p label {
+    margin-bottom: 5px;
+}
+
+form p textarea {
+    margin-bottom: 20px;
+}
